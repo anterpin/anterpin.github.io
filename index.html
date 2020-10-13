@@ -1,1 +1,76 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div>
+        <div id="boxes">
+        </div>
+        <div class="function add" onclick="createFunctionBox()"></div>
+    </div>
+
+   <iframe id="iframe" onload="drawFunctions()" src='chart.html'></iframe> 
+
+   <script>
+       const createFunctionBox = (f = {color:'#000000',expression:''})=>{
+           const box = document.createElement('div')
+           box.classList.add('function')
+           box.innerHTML = `
+               <div style="background-color:${f.color}" class="color-picker">
+                    <input type="color" value="${f.color}" style="opacity:0;" oninput="this.parentNode.style.backgroundColor=this.value;drawFunctions()">
+                </div>
+               <input type="text" value="${f.expression}" oninput="drawFunctions()">
+               <button onclick="removeFunctionBox(this)">X</button>`
+
+           const boxes = document.getElementById('boxes')
+            boxes.appendChild(box)
+       }
+
+        const load_function_from_local_storage = ()=>{
+           const store = window.localStorage.getItem('functions')
+            const functions = JSON.parse(store)
+            if(!functions){
+                createFunctionBox()
+                return
+            }
+            for(const e of functions)
+                createFunctionBox(e)
+        }
+       const removeFunctionBox = (cross)=>{
+           const boxes = document.getElementById('boxes')
+            boxes.removeChild(cross.parentElement)
+
+           drawFunctions()
+           if(boxes.children.length===0)
+               createFunctionBox()
+       }
+        const drawFunctions = () => {
+            const functions = []
+            const boxes = document.getElementById('boxes')
+            for(const box of boxes.children){
+                const color = box.children[0].children[0].value
+                const expression = box.children[1].value
+                functions.push({color,expression})
+            }
+            window.localStorage.setItem('functions',JSON.stringify(functions))
+             settings = {
+                center: [0,0],
+                zoom: 1,
+                functions
+            }
+                     
+            const wc = document.getElementById('iframe').contentWindow
+            wc.postMessage(JSON.stringify(settings),'*')
+       }
+       window.addEventListener('message', event => {
+            console.log('uau',event.data)
+       })
+    load_function_from_local_storage()
+   </script>
+</body>
+</html>

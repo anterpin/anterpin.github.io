@@ -1,76 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.profile{
+				display: flex;
+				justify-content: flex-end;
+				flex-direction:column;
+				align-items:center;
+				margin-bottom:50px!important;
+				flex-wrap: wrap;
+			}
+			@media (max-width:500px){
+				.profile{
+					justify-content: center;
+					margin-bottom:0!important;
+				}
+				.profile>div{
+					width:100%;
+				}
+			}
+			.profile>div{
+				text-align:center;
+			}
+			*:not(.content)>p{
+				font-size:23px;
+			}
+			.skills{
+				display:flex;
+				flex-wrap:wrap;
+				justify-content: space-evenly;
+			}
+			@media (max-width:768px){
+				.skills>*{
+					width:50%;
+				}
+			}
+			@media (max-width:500px){
+				.skills>*{
+					width:100%;
+					margin-left:20px!important;
+				}
+				.skills h3{
+					font-size:20px;
+				}
+				li{
+					font-size:20px;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    <div>
-        <div id="boxes">
-        </div>
-        <div class="function add" onclick="createFunctionBox()"></div>
-    </div>
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
 
-   <iframe id="iframe" onload="drawFunctions()" src='chart.html'></iframe> 
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
 
-   <script>
-       const createFunctionBox = (f = {color:'#000000',expression:''})=>{
-           const box = document.createElement('div')
-           box.classList.add('function')
-           box.innerHTML = `
-               <div style="background-color:${f.color}" class="color-picker">
-                    <input type="color" value="${f.color}" style="opacity:0;" oninput="this.parentNode.style.backgroundColor=this.value;drawFunctions()">
-                </div>
-               <input type="text" value="${f.expression}" oninput="drawFunctions()">
-               <button onclick="removeFunctionBox(this)">X</button>`
+						</div>
+					</header>
 
-           const boxes = document.getElementById('boxes')
-            boxes.appendChild(box)
-       }
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="https://anterpin.github.io/online-graphic-calculator">Graphic Calculator</a></li>
+							<li><a href="http://aquademy.eu">Aquademy E-commerce</a></li>
+							<li><a href="https://github.com/anterpin">Github Profile</a></li>
+						</ul>
+					</nav>
 
-        const load_function_from_local_storage = ()=>{
-           const store = window.localStorage.getItem('functions')
-            const functions = JSON.parse(store)
-            if(!functions){
-                createFunctionBox()
-                return
-            }
-            for(const e of functions)
-                createFunctionBox(e)
-        }
-       const removeFunctionBox = (cross)=>{
-           const boxes = document.getElementById('boxes')
-            boxes.removeChild(cross.parentElement)
+				<!-- Main -->
+					<div id="main">
+						<div class="inner profile">
+							<div>
+							<span class="image"><img src="images/profile.jpeg" style="max-width:300px;border-radius:50%;" alt="" /></span>
+							<h1 style="padding-bottom:5px;margin-bottom:0;">Antonio Pedretti</h1>
+								<p style="margin-bottom:15px;">Back-end software engineer living in Italy.</p>
+								<div>	
+									<a href="./resume.pdf" target="_blank" class="button icon solid fa-file-pdf"><span class="label">Resume</span>cv</a>
+									<a href="https://www.linkedin.com/in/antonio-pedretti" target="_blank" class="button solid"><i class="fab fa-linkedin"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="inner">
+							<h1>My Skills</h1>
+							<header class="skills">
+								<div>
+									<h3>Languages</h3>
+									<ul>
+										<li>JavaScript</li>
+										<li>C / C++</li>
+										<li>Python</li>
+										<li>Go</li>
+										<li>Java</li>
+										<li>SQL</li>
+									</ul>
+								</div>
+								<div>
+									<h3>Techologies</h3>
+									<ul>
+										<li>Node / Express</li>
+										<li>Rest API</li>
+										<li>Linux</li>
+										<li>Nginx</li>
+										<li>Docker</li>
+									</ul>
+								</div>
+								<div>
+									<h3>Tools</h3>
+									<ul>
+										<li>Git</li>
+										<li>Vim</li>
+										<li>Vscode</li>
+									</ul>
+								</div>
+								<div>
+									<h3>Databases</h3>
+									<ul>
+										<li>Mongodb</li>
+										<li>Postgres</li>
+									</ul>
+								</div>
+							</header>
+						</div>
+						<div class="inner">
+							<header>
+								<h1>My Personal Projects</h1>
+								<p>I have experience of 6+ years coding: 3D engine programming, network programming, binary reversing, ctfs.<br>
+								Unfortunately few projects are stored here, many of them got lost. Anyway you can check out them here.</p>
+							</header>
+							<section class="tiles">
+								<article class="style1">
+									<span class="image">
+										<img src="https://anterpin.github.io/online-graphic-calculator/build/screenshot.png" alt="" />
+									</span>
+									<a href="https://anterpin.github.io/online-graphic-calculator">
+										<h2>Graphic Calculator</h2>
+										<div class="content">
+											<p>Simple online function plotter, color customizable and embeddable</p>
+										</div>
+									</a>
+								</a>
+								</article>
+								<article class="style2">
+									<span class="image">
+										<img src="images/screen.png" alt=""/>
+									</span>
+									<a href="http://aquademy.eu">
+										<h2>Aquademy E-commerce</h2>
+										<div class="content">
+											<p>Made in go and node, uses nginx as a web server, redis as a caching system and mongdb</p>
+										</div>
+									</a>
+								</article>
+								<article class="style3">
+									<span class="image">
+										<img src="images/github.png" alt=""/>
+									</span>
+									<a href="https://github.com/anterpin">
+										<h2>Github Profile</h2>
+										<div class="content">
+											<p>A list of my projects and repositories since I started coding</p>
+										</div>
+									</a>
+								</article>
+							</section>
+						</div>
+					</div>
 
-           drawFunctions()
-           if(boxes.children.length===0)
-               createFunctionBox()
-       }
-        const drawFunctions = () => {
-            const functions = []
-            const boxes = document.getElementById('boxes')
-            for(const box of boxes.children){
-                const color = box.children[0].children[0].value
-                const expression = box.children[1].value
-                functions.push({color,expression})
-            }
-            window.localStorage.setItem('functions',JSON.stringify(functions))
-             settings = {
-                center: [0,0],
-                zoom: 1,
-                functions
-            }
-                     
-            const wc = document.getElementById('iframe').contentWindow
-            wc.postMessage(JSON.stringify(settings),'*')
-       }
-       window.addEventListener('message', event => {
-            console.log('uau',event.data)
-       })
-    load_function_from_local_storage()
-   </script>
-</body>
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Download</h2>
+								<a href="./resume.pdf" target="_blank" class="button icon solid fa-file-pdf"><span class="label">Resume</span>cv</a>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://twitter.com/AntonioPedret15" target="_blank" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/antonio-pedretti" target="_blank" class="icon brands style2 fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://github.com/anterpin" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="tel:+393472733395" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="mailto:antoniopedretti@rocketmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
